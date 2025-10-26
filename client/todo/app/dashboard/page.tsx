@@ -1,8 +1,14 @@
+"use client"
 import Footer from '@/components/Footer'
 import Headbar from '@/components/Headbar'
 import Task from '@/components/Task'
 import Edit from "../../components/Edit"
+import { useEffect } from 'react'
+import { redirect } from 'next/navigation'
 export default function Dashboard() {
+  useEffect(()=>{
+    if(localStorage.getItem('token') === null) redirect("/login")
+  },[])
   return (
     <>
       <div className='relative min-h-screen w-full'>
