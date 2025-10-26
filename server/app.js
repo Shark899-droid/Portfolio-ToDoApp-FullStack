@@ -13,7 +13,7 @@ app.use(cors())
 app.use(morgan("dev"))
 app.use(express.json())
 app.use("/api/v1",userRouter)
-app.use("/api/v1",taskRouter)
+app.use("/api/v1",authenticate,taskRouter)
 // const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
 //   host:process.env.DB_HOST,
 //   dialect: 'mysql',
