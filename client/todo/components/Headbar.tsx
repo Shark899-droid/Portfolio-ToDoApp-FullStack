@@ -1,5 +1,9 @@
+"use client"
 import Link from 'next/link'
+import { useEffect } from 'react'
 export default function Headbar() {
+
+
 
   return (
     <div className='flex justify-between items-center bg-gray-200 h-20 px-2'>

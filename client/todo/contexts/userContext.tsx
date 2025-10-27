@@ -37,6 +37,7 @@ export function UserProvider ({children}:{children:ReactNode}){
         
         localStorage.setItem("token",user.data.token)
         localStorage.setItem("name",user.data.name)
+        localStorage.setItem("id",user.data.id)
         setEmail("")
         setPassword("")
         popUpSuccessTimer()  

@@ -30,7 +30,7 @@ if(!user){
 const isPasswordAuthenticated = await bcrypt.compare(password,user.password)
 if(isPasswordAuthenticated){
     const token = jwt.sign({},"private")
-    res.status(200).json({token,email,name:user.firstName})
+    res.status(200).json({token,email,name:user.firstName,id:user.id})
 }else{
     res.status(500).json({ error: "Wrong password." })
     throw new Error("Wrong password.")

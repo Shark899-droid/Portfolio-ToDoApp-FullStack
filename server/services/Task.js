@@ -15,7 +15,8 @@ res.status(201).json(task)
 }
 export const getTasks=async(req,res)=>{
 try{
-const tasks = await Task.findAll({include:User})
+  const {user_id} = req.body
+const tasks = await Task.findAll({where:{user_id}})
 res.status(200).json(tasks)
 }catch(error){
     res.status(500).json({error})
