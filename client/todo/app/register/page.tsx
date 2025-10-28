@@ -22,11 +22,11 @@ export default function Register() {
   return (
     <div className='flex flex-col justify-center items-center space-y-6'>
       <Image src={logo} width={192} placeholder='blur' alt='Logo image' />
-      <h1 className='text-6xl font-bold'>Crea il tuo account!</h1>
-      <form className='flex flex-col justify-center items-center space-y-6 w-1/6 border-2 border-blue-400 px-4 py-6 rounded-2xl bg-gray-200'>
+      <h1 className='text-3xl font-bold'>Crea il tuo account!</h1>
+      <form className='flex flex-col justify-center items-center space-y-6  border-2 border-blue-400 px-6 py-6 rounded-2xl bg-gray-200'>
       {showErrorPopUp && <PopUp text="Something went wrong in the registration" color='red'/>} 
       {showSuccessPopUp && <PopUp text="User registered successfully" color='green'/>} 
-        <h1 className='text-4xl font-bold'>Register</h1>
+        <h1 className='text-2xl font-bold'>Register</h1>
 
         <input
           type='text'

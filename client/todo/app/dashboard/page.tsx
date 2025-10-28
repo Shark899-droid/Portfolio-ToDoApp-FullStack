@@ -38,7 +38,11 @@ export default function Dashboard() {
           {activeTasks.length > 0 ? (
             activeTasks.map((task: any) => (
               <div key={task.id} className='w-full'>
-                <Task title={task.title} id={task.id} />
+                <Task
+                  title={task.title}
+                  id={task.id}
+                  is_completed={task.is_completed}
+                />
               </div>
             ))
           ) : (
@@ -49,7 +53,11 @@ export default function Dashboard() {
           {completedTasks.length > 0 ? (
             completedTasks.map((task: any) => (
               <div key={task.id} className='w-full'>
-                <Task title={task.title} id={task.id} />
+                <Task
+                  title={task.title}
+                  id={task.id}
+                  is_completed={task.is_completed}
+                />
               </div>
             ))
           ) : (

@@ -3,32 +3,45 @@ import del from '../public/delete.png'
 import edit from '../public/edit.png'
 import { useTaskContext } from '@/contexts/taskContext'
 
-export default function Task({ title, id }: { title: string; id: number }) {
+type TaskItemProps = {
+  id: number
+  title: string
+  is_completed: boolean // Add this prop
+}
+export default function Task({ id, title, is_completed }: TaskItemProps) {
   const {
     deleteTask,
     setIsEditPopUpOpen,
-    isEditPopUpOpen,
     setSelectedTaskId,
     setEditNomeTask,
+    setCompleted
+
   } = useTaskContext()
 
 
   return (
     <div className='flex justify-between items-center w-full px-4 my-2 border-b-2 border-gray-200 pb-2'>
-      <input type='checkbox' className='w-4 h-4' />
+      <input
+        type='checkbox'
+        // 1. Use the prop for the checked status
+        checked={is_completed}
+        // 2. Call setCompleted directly from context
+        //    and pass the new checked value (e.target.checked)
+        onChange={(e) => setCompleted(id, e.target.checked)}
+        className='w-4 h-4'
+      />
       <div className='flex flex-col justify-center items-center'>
-        <h1>{title}</h1>
+        <h1 className={`${is_completed ? 'line-through text-gray-400' : ''}`}>
+          {title}
+        </h1>
       </div>
       <div className='flex justify-center items-center space-x-2'>
         <button
-          onClick={()=>{
-            
+          onClick={() => {
             setSelectedTaskId(id)
-            setEditNomeTask(title) // Pre-fill the edit field with current title
+            setEditNomeTask(title)
             setIsEditPopUpOpen(true)
-          }
-          }
-          
+          }}
           className='cursor-pointer'
           type='button'
         >

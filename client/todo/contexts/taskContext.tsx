@@ -15,6 +15,30 @@ export function TaskProvider ({children}:{children:ReactNode}){
     const [tasks,setTasks] = useState([])
     const [isEditPopUpOpen, setIsEditPopUpOpen] = useState(false)
     const [selectedTaskId, setSelectedTaskId] = useState<number | null>(null)
+
+
+    const logout = () =>{
+      localStorage.clear()
+      window.location.href = "/login"
+    }
+
+    const setCompleted = async (id: number, newStatus: boolean) => {
+      // MODIFIED
+      const task = await axios.put(
+        `http://localhost:3000/api/v1/task/${id}`,
+        {
+          is_completed: newStatus, 
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      )
+      console.log(task)
+
+      getAllTasks()
+    }
     const addTask =async () =>{
         const id = parseInt(localStorage.getItem("id")??"0")
      await axios.post(
@@ -26,6 +50,7 @@ export function TaskProvider ({children}:{children:ReactNode}){
         },
       }
     )
+    setNomeTask("")
    
     getAllTasks()
     }
@@ -97,7 +122,9 @@ export function TaskProvider ({children}:{children:ReactNode}){
           setEditNomeTask,
           selectedTaskId,
           setSelectedTaskId,
-          updateTask
+          updateTask,
+          setCompleted,
+          logout
         }}
       >
         {children}
